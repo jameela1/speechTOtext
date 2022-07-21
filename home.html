@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!DOCTYPE html>
+
+<html>
+<head>
+		<style>
+			/* CSS comes here */
+			body {
+			    font-family: arial;
+			}
+			button {
+  width: 200px;
+  height: 50px;
+  border: none;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  margin: 30px auto;
+  position: relative;
+  padding: 7.5px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: normal;
+  background-color:lightblue;
+}
+p{
+  margin: 30px;
+  color: black;
+  font-size: 30px;
+  font-weight: normal;
+  text-align: center;
+}
+		</style>
+		<title> Speech to Text using JS</title>
+	</head>
+<body>
+    <div>
+        <button  id="speak">start</button>
+        <p id="textarea"></p>
+
+    </div>
+</body>
+
+<script>
+	/* JS comes here */
+    var speak = document.getElementById('speak');
+    var textarea = document.getElementById('textarea');
+    var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    var recognition = new SpeechRecognition();
+     // This runs when the speech recognition service starts
+    speak.addEventListener('click', function () {
+        recognition.start();
+        textarea.innerHTML = 'listening, please speak...';
+    })
+    recognition.onresult = function (e) {
+        var transcript = e.results[0][0].transcript;
+        textarea.innerHTML = transcript;
+    }
+
+</script>
+
+</html>
